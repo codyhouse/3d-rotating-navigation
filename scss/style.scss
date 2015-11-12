@@ -13,7 +13,7 @@ Primary style
 -------------------------------- */
 
 *, *::after, *::before {
-	@include box-sizing(border-box);
+	box-sizing: border-box;
 }
 
 html {
@@ -299,13 +299,14 @@ Main Components
 	left: 0;
 	height: 3px;
 	width: 100%/$nav-items;
-	background-color: currentColor;
 	@include transform-origin(center bottom);
 	@include transform(translateZ(0) rotateX(90deg));
 	
 	-webkit-transition: -webkit-transform $animation-duration, left 0.5s, color 0.5s, background-color 0.5s;
 	-moz-transition: -moz-transform $animation-duration, left 0.5s, color 0.5s, background-color 0.5s;
 	transition: transform $animation-duration, left 0.5s, color 0.5s, background-color 0.5s;
+
+
 
 	&::before {
 		/* triangle at the bottom of nav selected item */
@@ -328,18 +329,23 @@ Main Components
 
 .color-1 {
 	color: $color-1;
+	background-color: $color-1;
 }
 .color-2 {
 	color: $color-2;
+	background-color: $color-2;
 }
 .color-3 {
 	color: $color-3;
+	background-color: $color-3;
 }
 .color-4 {
 	color: $color-4;
+	background-color: $color-4;
 }
 .color-5 {
 	color: $color-5;
+	background-color: $color-5;
 }
 
 main {
