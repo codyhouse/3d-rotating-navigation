@@ -1,57 +1,74 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-
-	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
-	<script src="js/modernizr.js"></script> <!-- Modernizr -->
-  	
-	<title>3D Rotating Navigation | CodyHouse</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>3D Rotating Navigation | CodyHouse</title>
 </head>
 <body>
-	<header class="cd-header">
-		<a href="#0" class="cd-logo"><img src="img/cd-logo.svg" alt="Logo"></a>
-		<a href="#0" class="cd-3d-nav-trigger">
-			Menu
-			<span></span>
-		</a>
-	</header> <!-- .cd-header -->
+	<header class="cd-header container flex flex--space-between flex--center-y">
+    <a href="#0" class="cd-logo">
+      <svg width="124" height="23" viewBox="0 0 124 23"><title>Go to homepage</title><rect width="70" height="23" fill="#c96aa4"/><rect x="70" width="27" height="23" fill="#9a57bd"/><rect x="97" width="27" height="23" fill="#fff"/></svg>
+    </a>
+    
+    <a href="#cd-3d-nav" class="cd-header__nav-trigger" aria-label="Toggle menu">
+      <span aria-hidden="true"></span>
+    </a>
+	</header>
 	
-	<main>
-		<h1>3D Rotating Navigation</h1>
-		<!-- all your content here -->
+	<main class="cd-main">
+    <!-- all your content here -->
+    <div class="container container--xs">
+      <div class="text-component text--center margin-top--xxl">
+        <h1 class="text--xl">3D Rotating Navigation</h1>
+        <p>👈 <a class="cd-article-link" href="https://codyhouse.co/gem/3d-rotating-navigation">Article &amp; Download</a></p>
+      </div>
+    </div>
 	</main>
 	
-	<nav class="cd-3d-nav-container">
-		<ul class="cd-3d-nav">
-			<li class="cd-selected">
-				<a href="#0">Dashboard</a>
+	<nav class="cd-3d-nav js-cd-3d-nav" id="cd-3d-nav">
+		<ul class="cd-3d-nav__list">
+			<li class="cd-3d-nav__item cd-3d-nav__item--selected">
+				<a href="#0">
+          <svg aria-hidden="true" class="icon icon--md"><g stroke="currentColor" stroke-width="2" fill="none"><path d="M12,6.6c1.2-0.5,2.6-0.8,4-0.8 c5.6,0,10.2,4.6,10.2,10.2"></path><path d="M5.8,16c0-1.4,0.3-2.8,0.8-4"></path><line x1="13.9" y1="13.9" x2="8.4" y2="8.4"></line> <circle cx="16" cy="16" r="15"></circle><circle cx="16" cy="16" r="3"></circle></svg>
+          <span>Dashboard</span>
+        </a>
 			</li>
 
-			<li>
-				<a href="#0">Projects</a>
+			<li class="cd-3d-nav__item">
+				<a href="#0">
+          <svg aria-hidden="true" class="icon icon--md"><g stroke="currentColor" stroke-width="2" fill="none"><polyline points=" 11,7 11,2 21,2 21,7 "></polyline> <polyline points="12,23 1,23 1,7 31,7 31,23 20,23 "></polyline> <polyline points="30,26 30,30 2,30 2,26 "></polyline><rect x="12" y="20" width="8" height="6"></rect></svg>
+          <span>Projects</span>
+        </a>
 			</li>
 
-			<li>
-				<a href="#0">Images</a>
+			<li class="cd-3d-nav__item">
+				<a href="#0">
+          <svg aria-hidden="true" class="icon icon--md"><g stroke="currentColor" stroke-width="2" fill="none"><polyline points="14.858,21.142 22,14 31,22"></polyline><polyline points="1,25 10,17 18.501,24.249 "></polyline> <rect x="1" y="3" width="30" height="26"></rect><circle cx="14.5" cy="10.5" r="2.5"></circle></svg>
+          <span>Images</span>
+        </a>
 			</li>
 
-			<li>
-				<a href="#0">Settings</a>
+			<li class="cd-3d-nav__item">
+				<a href="#0">
+          <svg aria-hidden="true" class="icon icon--md"><g stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="2" width="28" height="28"></rect><line x1="9" y1="18" x2="9" y2="6"></line><line x1="9" y1="26" x2="9" y2="22"></line><line x1="12" y1="22" x2="6" y2="22"></line><line x1="23" y1="18" x2="23" y2="6"></line><line x1="23" y1="26" x2="23" y2="22"></line><line x1="26" y1="22" x2="20" y2="22"></line><line x1="16" y1="26" x2="16" y2="14"></line><line x1="16" y1="10" x2="16" y2="6"></line><line x1="13" y1="10" x2="19" y2="10"></line></svg>
+          <span>Settings</span>
+        </a>
 			</li>
 
-			<li>
-				<a href="#0">New</a>
+			<li class="cd-3d-nav__item">
+				<a href="#0">
+          <svg aria-hidden="true" class="icon icon--md"><g stroke="currentColor" stroke-width="2" fill="none"><polyline points="13 6 2 6 2 30 26 30 26 19"></polyline> <polygon points="16 20 10 22 12 16 26 2 30 6 16 20"></polygon><line x1="22" y1="6" x2="26" y2="10"></line></svg>
+          <span>New</span>
+        </a>
 			</li>
-		</ul> <!-- .cd-3d-nav -->
+		</ul>
 
-		<span class="cd-marker color-1"></span>	
-	</nav> <!-- .cd-3d-nav-container -->
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/main.js"></script> <!-- Resource jQuery -->
+		<span class="cd-3d-nav__marker cd-3d-nav__marker--col-1" aria-hidden="true"></span>	
+	</nav>
+<script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
+<script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,300 @@
+@import '../../../../codyhouse-framework/main/assets/css/_global.scss'; // ⚠️ make sure to import the CodyHouse framework
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,300,600'); // custom font
+
+// --------------------------------
+
+// 3d Rotating Navigation - by CodyHouse.co
+
+// --------------------------------
+
+:root {
+  // colors
+  @include defineColorHSL(--cd-color-1, 226, 23%, 37%); // Dark Blue
+  @include defineColorHSL(--cd-color-2, 279, 44%, 54%); // Amethyst
+  @include defineColorHSL(--cd-color-3, 323, 47%, 60%); // Hopbush
+  @include defineColorHSL(--cd-color-4, 25, 59%, 60%);  // Di Serria
+  @include defineColorHSL(--cd-color-5, 205, 51%, 55%); // Danube
+  @include defineColorHSL(--cd-color-6, 138, 46%, 64%); // De York
+
+  // font
+  --font-primary: 'Open Sans', sans-serif;
+  
+  // nav
+  --cd-nav-height: 80px;
+
+  // animation
+  --cd-nav-animation: 0.5s;
+}
+
+@supports(--css: variables) {
+  @include breakpoint(md) {
+    :root {
+      --cd-nav-height: 170px;
+    }
+  }
+}
+
+body {
+  background-color: var(--cd-color-1);
+}
+
+.cd-header {
+	height: 80px;
+  transition: transform var(--cd-nav-animation);
+	transform: translateZ(0);
+  will-change: transform;
+	backface-visibility: hidden;
+}
+
+.cd-header--is-translated {
+  transform: translateY(var(--cd-nav-height));
+}
+
+.cd-logo {
+  display: block;
+
+  svg {
+    display: block;
+  }
+}
+
+.cd-header__nav-trigger { // menu icon element
+	position: relative;
+	height: 45px;
+	width: 45px;
+
+	span, 
+	span::before, 
+	span::after { // menu icon in CSS
+		position: absolute;
+		width: 28px;
+		height: 3px;
+		background-color: var(--color-white);
+		backface-visibility: hidden;
+	}
+
+	span { // menu icon central line
+		top: 21px;
+		left: 8px;
+		transition: background 0.2s var(--cd-nav-animation);
+
+		&::before, 
+		&:after { // menu icon upper and lower lines
+			content: '';
+			left: 0;
+			transition: transform 0.2s var(--cd-nav-animation);
+		}
+		
+		&::before {
+			bottom: 8px;
+		}
+
+		&::after {
+			top: 8px;
+		}
+	}
+	
+	.cd-header--is-translated & {
+		span { // hide menu central line
+			background-color: alpha(var(--color-white), 0);
+
+			&::before, 
+			&::after { // keep upper and lower lines visible 
+				background-color: alpha(var(--color-white), 1);
+			}
+
+			&::before {
+				transform: translateY(8px) rotate(-45deg);
+			}
+
+			&::after {
+				transform: translateY(-8px) rotate(45deg);
+			}
+		}
+	}
+}
+
+.cd-3d-nav { // 3D navigation container
+  height: var(--cd-nav-height);
+  width: 100%;
+  background-color: var(--color-black);
+}
+
+.cd-3d-nav__list { // 3D rotating navigation
+  display: flex;
+  height: 100%;
+  background-color: lightness(var(--cd-color-1), 0.75);
+}
+
+.cd-3d-nav__item {
+  float: left; // flex fallback
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+  flex-basis: 0;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1;
+    transition: background-color 0.2s;
+    color: var(--color-white);
+    text-decoration: none;
+
+    &:hover {
+      background-color: lightness(var(--cd-color-1), 0.65);
+    }
+  }
+
+  span { // hide menu item label on small screen
+    display: none;
+  }
+
+  .icon {
+    color: lightness(var(--cd-color-1), 1.1);
+  }
+
+  @include breakpoint(md) {
+    span { // show menu item label
+      display: inline-block; // flex fallback
+      display: inline-flex;
+      font-size: var(--text-xs);
+      font-weight: 600; 
+      @include fontSmooth;
+      margin-top: var(--space-xxs);
+    }
+  }
+}
+
+.cd-3d-nav__item--selected {
+  a {
+    background-color: lightness(var(--cd-color-1), 0.5);
+
+    &:hover {
+      background-color: lightness(var(--cd-color-1), 0.5);
+    }
+  }
+
+  .icon {
+    color: var(--color-white);
+  }
+}
+
+.js { // 3D nav animation style - only if JavaScript is enabled
+  .cd-3d-nav { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    perspective: 1000px; // enable a 3D-space for children elements
+    transform: translateY(-100%);
+    transition: transform var(--cd-nav-animation) 0s, visibility 0s var(--cd-nav-animation);
+  }
+
+  .cd-3d-nav--is-visible {
+    visibility: visible;
+    transform: translateY(0);
+    transition: transform var(--cd-nav-animation) 0s, visibility var(--cd-nav-animation) 0s;
+  }
+
+  .cd-3d-nav__list {
+  	position: relative;
+    // Force Hardware Acceleration
+  	transform: translateZ(0);
+  	backface-visibility: hidden;
+  	transform-origin: center bottom;
+  	transform: rotateX(90deg);
+  	transition: transform var(--cd-nav-animation);
+
+  	&::after { // menu dark cover layer - enhance perspective effect
+  		content: '';
+  		position: absolute;
+  		top: 0;
+  		left: 0;
+  		height: 100%;
+  		width: 100%;
+  		background-color: var(--color-black);
+  		opacity: 1;
+  		visibility: visible;
+  		transition: opacity var(--cd-nav-animation) 0s, visibility var(--cd-nav-animation) 0s;
+  	}
+  }
+
+  .cd-3d-nav--is-visible .cd-3d-nav__list {
+    transform: translateZ(0);
+
+    &::after { // menu cover layer - hide it when navigation is visible
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--cd-nav-animation) 0s, visibility 0s var(--cd-nav-animation);
+    }
+  }
+
+  .cd-3d-nav__marker { // line at the bottom of nav selected item
+  	position: absolute;
+  	bottom: 0;
+  	left: 0;
+  	height: 3px; // width is set using JavaScript
+  	transform-origin: center bottom;
+  	transform: rotateX(90deg);
+  	transition: transform var(--cd-nav-animation), left 0.5s, color 0.5s, background-color 0.5s;
+    
+  	&::before { // triangle at the bottom of nav selected item
+  		content: '';
+  		position: absolute;
+  		bottom: 3px;
+  		left: 50%;
+      transform: translateX(-50%);
+      @include triangle(up, 10px, inherit);
+  	}
+  }
+
+  .cd-3d-nav--is-visible .cd-3d-nav__marker {
+    transform: translateZ(0);
+  }
+}
+
+.cd-3d-nav__marker--col-1 { // these are the colors of the marker - line + arrow
+	color: var(--cd-color-2);
+  background-color: var(--cd-color-2); 
+}
+.cd-3d-nav__marker--col-2 {
+	color: var(--cd-color-3);
+  background-color: var(--cd-color-3);
+}
+.cd-3d-nav__marker--col-3 {
+	color: var(--cd-color-4);
+  background-color: var(--cd-color-4);
+}
+.cd-3d-nav__marker--col-4 {
+	color: var(--cd-color-5);
+  background-color: var(--cd-color-5);
+}
+.cd-3d-nav__marker--col-5 {
+	color: var(--cd-color-6);
+  background-color: var(--cd-color-6);
+}
+
+.cd-main {
+	transition: transform var(--cd-nav-animation);
+  // Force Hardware Acceleration
+  will-change: transform;
+	transform: translateZ(0); 
+	backface-visibility: hidden;
+
+	h1 {
+		color: var(--color-white);
+    font-weight: 300;
+		@include fontSmooth;
+	}
+}
+
+.cd-main--is-translated {
+  transform: translateY(var(--cd-nav-height));
+}
+
+.cd-article-link {
+  color: lightness(var(--cd-color-1), 0.2);
+}

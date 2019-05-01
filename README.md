@@ -1,12 +1,19 @@
-3D Rotating Navigation
-=========
+# 3D Rotating Navigation
 
 A 3D rotating navigation, powered by CSS transformations.
 
-[Article on CodyHouse](http://codyhouse.co/gem/3d-rotating-navigation/)
+[Article on CodyHouse](https://codyhouse.co/gem/3d-rotating-navigation)
 
-[Demo](http://codyhouse.co/demo/3d-rotating-navigation/)
+[Demo](https://codyhouse.co/demo/3d-rotating-navigation)
 
-Icons by [Vlad Cristea](https://dribbble.com/GraphicDelivery) available for free download on [GraphicBurger](http://graphicburger.com/cicons-40-outline-icons/)
- 
-[Terms](http://codyhouse.co/terms/)
+[License](https://codyhouse.co/license)
+
+## Dependencies
+
+This experiment is built upon the [CodyHouse Framework](https://github.com/CodyHouse/codyhouse-framework).
+
+Make sure to include both _globals.scss and util.js files of the framework.
+
+## Credits
+
+Icons: [Nucleo Library](https://nucleoapp.com/)
