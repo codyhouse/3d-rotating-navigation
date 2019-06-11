@@ -12,7 +12,7 @@ A 3D rotating navigation, powered by CSS transformations.
 
 This experiment is built upon the [CodyHouse Framework](https://github.com/CodyHouse/codyhouse-framework).
 
-Make sure to include both _globals.scss and util.js files of the framework.
+Make sure to include both style.scss and util.js files of the framework.
 
 ## Credits
 
